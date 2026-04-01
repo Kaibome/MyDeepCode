@@ -1,0 +1,93 @@
+llm_provider: openai
+default_search_server: bocha-mcp
+
+openai:
+  default_model: gpt-4o
+  base_max_tokens: 40000
+  max_tokens_policy: adaptive
+  retry_max_tokens: 32768
+
+anthropic:
+  default_model: claude-sonnet-4.5
+
+google:
+  default_model: gemini-3-pro-preview
+
+document_segmentation:
+  enabled: true
+  size_threshold_chars: 50000
+
+planning_mode: traditional
+execution_engine: asyncio
+
+logging:
+  level: info
+  path_settings:
+    path_pattern: "logs/deepcode-langgraph-{unique_id}.jsonl"
+    timestamp_format: "%Y%m%d_%H%M%S"
+    unique_id: timestamp
+  progress_display: false
+  transports:
+    - console
+    - file
+
+mcp:
+  servers:
+    # Default search server (set BOCHA_API_KEY in env if you use it)
+    bocha-mcp:
+      command: python
+      args:
+        - tools/bocha_search_server.py
+      env:
+        BOCHA_API_KEY: "sk-xxxxxxxxxxxxxxxxx"
+        PYTHONPATH: "."
+
+    # Keep filesystem available for planning/repo phases without hardcoded node path
+    filesystem:
+      command: npx
+      args:
+        - -y
+        - "@modelcontextprotocol/server-filesystem"
+        - "."
+
+    document-segmentation:
+      command: python
+      args:
+        - tools/document_segmentation_server.py
+      env:
+        PYTHONPATH: "."
+
+    file-downloader:
+      command: python
+      args:
+        - tools/pdf_downloader.py
+      env:
+        PYTHONPATH: "."
+
+    github-downloader:
+      command: python
+      args:
+        - tools/git_command.py
+      env:
+        PYTHONPATH: "."
+
+    code-implementation:
+      command: python
+      args:
+        - tools/code_implementation_server.py
+      env:
+        PYTHONPATH: "."
+
+    code-reference-indexer:
+      command: python
+      args:
+        - tools/code_reference_indexer.py
+      env:
+        PYTHONPATH: "."
+
+    command-executor:
+      command: python
+      args:
+        - tools/command_executor.py
+      env:
+        PYTHONPATH: "."

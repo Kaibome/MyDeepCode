@@ -1,0 +1,31 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Runtime / local output
+deepcode_lab/
+logs/
+*.log
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
