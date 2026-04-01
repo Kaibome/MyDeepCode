@@ -29,3 +29,8 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# 本仓库仅跟踪 deepcode；其余目录/文件保留在本地即可
+/generate_code/
+/main.py
+/*.plan.md
