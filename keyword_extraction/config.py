@@ -1,0 +1,115 @@
+"""Configuration for multilingual keyword extraction."""
+
+from __future__ import annotations
+
+SUPPORTED_LANGS = {"id", "th", "vi", "pt"}
+
+# Business-level normalized keywords used by downstream tagging.
+BUSINESS_KEYWORDS = {
+    "味道",
+    "配送速度",
+    "价格",
+    "包装",
+    "分量",
+    "服务",
+}
+
+# Synonyms and phrase patterns across target languages.
+KEYWORD_RULES = {
+    "味道": [
+        "taste",
+        "tasty",
+        "flavor",
+        "delicious",
+        "sabor",
+        "gostoso",
+        "enak",
+        "lezat",
+        "rasa",
+        "อร่อย",
+        "รสชาติ",
+        "ngon",
+        "hương vị",
+    ],
+    "配送速度": [
+        "delivery",
+        "fast delivery",
+        "slow delivery",
+        "entrega",
+        "entrega rapida",
+        "entrega rápida",
+        "pengiriman",
+        "antar",
+        "cepat",
+        "lama",
+        "ส่งเร็ว",
+        "ส่งช้า",
+        "giao hàng",
+        "nhanh",
+        "chậm",
+    ],
+    "价格": [
+        "price",
+        "expensive",
+        "cheap",
+        "valor",
+        "preco",
+        "preço",
+        "mahal",
+        "murah",
+        "ราคา",
+        "แพง",
+        "ถูก",
+        "giá",
+        "đắt",
+        "rẻ",
+    ],
+    "包装": [
+        "packaging",
+        "package",
+        "embalagem",
+        "embalar",
+        "kemasan",
+        "bungkus",
+        "บรรจุภัณฑ์",
+        "กล่อง",
+        "đóng gói",
+        "bao bì",
+    ],
+    "分量": [
+        "portion",
+        "size",
+        "quantidade",
+        "pouco",
+        "muito",
+        "porsi",
+        "sedikit",
+        "banyak",
+        "ปริมาณ",
+        "เยอะ",
+        "น้อย",
+        "khẩu phần",
+        "ít",
+        "nhiều",
+    ],
+    "服务": [
+        "service",
+        "staff",
+        "atendimento",
+        "atendente",
+        "pelayanan",
+        "servis",
+        "บริการ",
+        "พนักงาน",
+        "dịch vụ",
+        "phục vụ",
+    ],
+}
+
+LANG_STOPWORDS = {
+    "id": {"dan", "yang", "di", "ini", "itu", "untuk", "dengan", "sangat"},
+    "th": {"และ", "มาก", "ที่", "ก็", "คือ", "ให้"},
+    "vi": {"và", "là", "của", "rất", "cho", "nhưng", "được"},
+    "pt": {"e", "de", "do", "da", "muito", "para", "com", "uma", "um"},
+    "en": {"and", "the", "is", "very", "for", "with", "to"},
+}
